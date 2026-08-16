@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+class School extends Model
+{
+    protected $fillable = [
+        'name',
+        'city',
+        'state',
+    ];
+
+    public function supportRecords(): HasMany
+    {
+        return $this->hasMany(SupportRecord::class);
+    }
+}
+
+
