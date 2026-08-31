@@ -8,14 +8,16 @@
             <h1 class="text-3xl font-bold mt-1">Municípios</h1>
             <p class="text-blue-100 mt-2 text-sm">Consulte matrizes e regras de atendimento</p>
 
-            <div class="mt-5 grid grid-cols-2 gap-2 text-center">
-                <div class="bg-white/15 rounded-xl p-2">
-                    <p class="text-[11px] uppercase tracking-wide text-blue-100">Cadastrados</p>
-                    <p class="font-bold text-lg">{{ $municipalities->count() }}</p>
-                </div>
-                <div class="bg-white/15 rounded-xl p-2">
-                    <p class="text-[11px] uppercase tracking-wide text-blue-100">Com Âncora</p>
-                    <p class="font-bold text-lg">{{ $municipalities->whereNotNull('anchor_instructions')->count() }}</p>
+            <div class="mt-5 flex justify-center">
+                <div class="bg-white/15 rounded-2xl py-3 px-8 text-center shadow-sm w-full max-w-xs border border-white/10">
+                    <p class="text-xs uppercase tracking-widest text-blue-100 font-semibold mb-1">Total de Municípios Ativos</p>
+                    <div class="flex items-center justify-center gap-2 mt-1">
+                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-blue-200">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                        </svg>
+                        <p class="font-extrabold text-3xl">{{ $municipalities->count() }}</p>
+                    </div>
                 </div>
             </div>
 

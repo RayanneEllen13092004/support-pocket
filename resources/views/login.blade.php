@@ -31,7 +31,7 @@
         <p class="text-gray-500 mt-2 font-medium">Gestão de Atendimento</p>
     </div>
 
-    <form action="{{ route('login.store') }}" method="POST" class="space-y-5">
+    <form action="{{ route('login.store') }}" method="POST" class="space-y-5" novalidate>
         @csrf
 
         <div>
@@ -66,7 +66,7 @@
 
             <button type="button" onclick="alternarSenha()" class="absolute right-4 top-11 text-gray-500 hover:text-blue-600 focus:outline-none">
 
-                <!-- Olho Cortado (Visível por padrão) -->
+                <!-- Olho Cortado -->
                 <svg id="iconeFechado" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
                 </svg>
@@ -81,14 +81,16 @@
 
         <div class="pt-6">
             <button type="submit"
-                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-2xl shadow-lg transition-transform active:scale-95 text-xl">
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-2xl shadow-lg transition-all active:scale-95 text-xl focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-offset-2">
                 Entrar
             </button>
         </div>
     </form>
 
     <div class="mt-8 text-center">
-        <a href="#" class="text-blue-600 text-sm font-bold">Esqueci minha senha</a>
+        <a href="#" class="text-blue-600 text-sm font-bold underline underline-offset-2 hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-sm transition-colors">
+            Esqueci minha senha
+        </a>
     </div>
 </div>
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -13,22 +13,17 @@ class LoginController extends Controller
         return view('login');
     }
 
-    public function store(Request $request)
+    public function store(LoginRequest $request)
     {
-        // Validação dos dados da requisição
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required', 'string'],
-        ]);
-
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($request->validated())) {
             $request->session()->regenerate();
 
             return redirect()->intended('/dashboard');
         }
 
         return back()->withErrors([
-            'email' => 'As credenciais informadas não correspondem aos nossos registros.',
-        ])->withInput();
+            'email' => 'As credenciais informadas não correspondem aos nossos registros. Verifique seus dados e tente novamente.',
+        ])->onlyInput('email');
     }
 }
+

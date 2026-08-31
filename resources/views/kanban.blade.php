@@ -17,9 +17,10 @@
         .kanban-drag {
             cursor: grabbing;
         }
-    </style>
+        </style>
 
-    <div class="max-w-md mx-auto min-h-screen bg-white shadow-lg overflow-hidden border-x border-slate-200 pb-24">
+    <div class="max-w-md mx-auto min-h-screen bg-white shadow-lg overflow-hidden border-x border-slate-200 pb-24 flex flex-col">
+
         <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 pt-10 pb-6 rounded-b-3xl shadow-md mb-6">
             <h1 class="text-2xl font-bold">Meu Kanban</h1>
             <p class="text-sm text-blue-100 mt-1">Organize seus chamados com arrastar e soltar</p>
@@ -42,9 +43,10 @@
             </form>
         </div>
 
-        <div class="flex overflow-x-auto gap-4 px-4 pb-6 snap-x">
-            <div class="min-w-[260px] bg-white rounded-3xl border border-slate-200 p-4 snap-center shadow-sm">
-                <div class="flex items-center justify-between mb-3">
+        <div class="flex overflow-x-auto gap-4 px-4 pb-6 snap-x flex-1">
+
+            <div class="w-[85vw] max-w-[280px] shrink-0 bg-white rounded-3xl border border-slate-200 p-4 snap-center shadow-sm flex flex-col">
+                <div class="flex items-center justify-between mb-3 shrink-0">
                    <h2 class="text-xs font-bold uppercase tracking-wide text-slate-600">A Fazer</h2>
                    <span class="text-xs font-semibold bg-slate-100 text-slate-600 px-2 py-1 rounded-full">
                        {{ $kanban['todo']->count() }}
@@ -64,17 +66,17 @@
                 </div>
             </div>
 
-            <div class="min-w-[260px] bg-blue-50 rounded-3xl border border-blue-200 p-4 snap-center shadow-sm">
-                <div class="flex items-center justify-between mb-3">
+            <div class="w-[85vw] max-w-[280px] shrink-0 bg-blue-50 rounded-3xl border border-blue-200 p-4 snap-center shadow-sm flex flex-col">
+                <div class="flex items-center justify-between mb-3 shrink-0">
                    <h2 class="text-xs font-bold uppercase tracking-wide text-blue-700">Em andamento</h2>
                    <span class="text-xs font-semibold bg-blue-100 text-blue-700 px-2 py-1 rounded-full">
                        {{ $kanban['doing']->count() }}
                    </span>
                 </div>
 
-                <div id="doing" class="space-y-3 min-h-[120px] kanban-col">
+                <div id="doing" class="space-y-3 flex-1 kanban-col">
                    @forelse($kanban['doing'] as $task)
-                       <div data-id="{{ $task->id }}" class="bg-white p-4 rounded-2xl border border-blue-200 shadow-sm cursor-grab active:cursor-grabbing hover:shadow-md transition">
+                       <div data-id="{{ $task->id }}" class="bg-slate-50 p-4 rounded-2xl border border-slate-200 shadow-sm cursor-grab active:cursor-grabbing hover:shadow-md transition">
                            <h3 class="font-semibold text-slate-800 text-sm">{{ $task->title }}</h3>
                        </div>
                    @empty
@@ -85,7 +87,7 @@
                 </div>
             </div>
 
-            <div class="min-w-[260px] bg-emerald-50 rounded-3xl border border-emerald-200 p-4 snap-center shadow-sm">
+            <div class="w-[85vw] max-w-[280px] shrink-0 bg-emerald-50 rounded-3xl border border-emerald-200 p-4 snap-center shadow-sm">
                 <div class="flex items-center justify-between mb-3">
                    <h2 class="text-xs font-bold uppercase tracking-wide text-emerald-700">Concluído</h2>
                    <span class="text-xs font-semibold bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full">
