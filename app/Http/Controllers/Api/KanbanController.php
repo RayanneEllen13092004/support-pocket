@@ -52,4 +52,35 @@ class KanbanController extends Controller
 
         return response()->json(['success' => true, 'task' => $task], 200);
     }
+
+    public function update(Request $request, $id)
+    {
+        $tarefa = Task::where('id', $id)->where('user_id', Auth::id())->first();
+
+        if (!$tarefa) {
+            return response()->json(['message' => 'Tarefa não encontrada ou sem permissão.'], 404);
+        }
+
+        $request->validate([
+            'title' => 'required|string|max:255'
+        ]);
+
+        $tarefa->title = $request->title;
+        $tarefa->save();
+
+        return response()->json(['message' => 'Tarefa atualizada com sucesso!', 'tarefa' => $tarefa], 200);
+    }
+
+    public function destroy($id)
+    {
+        $tarefa = Task::where('id', $id)->where('user_id', Auth::id())->first();
+
+        if (!$tarefa) {
+            return response()->json(['message' => 'Tarefa não encontrada ou sem permissão.'], 404);
+        }
+
+        $tarefa->delete();
+
+        return response()->json(['message' => 'Tarefa excluída com sucesso!'], 200);
+    }
 }

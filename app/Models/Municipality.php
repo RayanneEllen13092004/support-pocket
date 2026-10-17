@@ -9,6 +9,12 @@ class Municipality extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'anchor_instructions',
+        'is_active'
+    ];
+
     public function documents()
     {
         return $this->hasMany(Document::class);
