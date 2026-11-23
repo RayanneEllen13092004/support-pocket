@@ -107,6 +107,22 @@
                     </div>
                 </div>
             </div>
+
+            {{-- Privacidade e Exclusão de Conta --}}
+            <div class="bg-white rounded-2xl p-4 border border-red-200 shadow-sm">
+                <h2 class="text-sm font-bold text-red-700 uppercase tracking-wide">Privacidade e Conta</h2>
+                <p class="text-xs text-slate-500 mt-1">
+                    Seus dados estão armazenados em servidor seguro (PostgreSQL). Caso deseje encerrar seu acesso, a exclusão é imediata e irreversível.
+                </p>
+
+                <form action="{{ route('perfil.destroy') }}" method="POST" class="mt-3" onsubmit="return confirm('Tem certeza que deseja excluir sua conta permanentemente? Esta ação não pode ser desfeita.');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="w-full bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 font-semibold text-sm py-2.5 px-4 rounded-xl transition">
+                        Excluir minha conta
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 @endsection

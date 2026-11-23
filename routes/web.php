@@ -6,6 +6,7 @@ use App\Http\Controllers\SupportRecordController;
 use App\Models\Municipality;
 use App\Http\Controllers\SnippetController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return redirect('/login');
@@ -54,7 +55,6 @@ Route::middleware('auth')->group(function () {
     })->middleware(\App\Http\Middleware\CheckSupervisor::class)->name('municipios.documentos');
 
     Route::get('/snippets', [SnippetController::class, 'index'])->name('snippets.index');
-
     Route::post('/snippets', [SnippetController::class, 'store'])->name('snippets.store');
 
     Route::get('/registro', [SupportRecordController::class, 'create'])->name('registro.create');
@@ -63,5 +63,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/kanban', [TaskController::class, 'index'])->middleware('auth')->name('kanban');
     Route::post('/kanban', [TaskController::class, 'store'])->name('kanban.store');
     Route::patch('/kanban/{task}/status', [TaskController::class, 'updateStatus'])->name('kanban.updateStatus');
+
+    Route::post('/perfil/aceitar-termos', [ProfileController::class, 'acceptTerms'])->name('perfil.acceptTerms');
+    Route::delete('/perfil/excluir-conta', [ProfileController::class, 'destroyAccount'])->name('perfil.destroy');
 
 });
